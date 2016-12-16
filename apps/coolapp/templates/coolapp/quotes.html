@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!Doctype html>
+<html>
+    <head>
+       <title>Quotes</title>
+       <link rel="stylesheet" href="{% static 'coolapp/css/styles.css' %}">
+       <script src="https://use.typekit.net/iii7xtz.js"></script>
+       <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    </head>
+    <body>
+      <div id="wrapper">
+      <h1>Success! Welcome, {{ request.session.first_name }}!</h1> <h3><a href="/quotes">Dashboard<a/> | <a href="/users">Users<a/> | <a href= "/logout">Logout</a></h3><br>
+      <div class="register">
+        {% for quote in allQuotes %}
+        <div class="quotes">
+          <p>{{ quote.quote }}</p>
+          <strong>- {{ quote.author }}</strong>
+          <hr>
+          <p>Posted on: {{ quote.created_at }}</p>
+        </div>
+        {%  endfor %}
+      </div>
+
+      <div class="login">
+        <form class="" action="/add_quote" method="post">
+          {% csrf_token %}
+          <input type="text" name="author" value="">
+          <textarea name="quote" rows="8" cols="80"></textarea>
+          <input type="submit" name="" value="Submit Quote">
+        </form>
+
+
+      </div>
+      </div>
+    </body>
+</html>
