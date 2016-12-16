@@ -45,7 +45,7 @@ def login_process(request):
 		# request.session['errors'] = result[1]
 		return redirect('/')
 
-def users(request):
+def users(request, id):
 	if not 'id' in request.session :
 		return redirect('/')
 	else:
@@ -59,23 +59,32 @@ def quotes(request):
 		return redirect('/')
 	else:
 		session = request.session['id']
+        loggedInUser = User.objects.filter(id=session)
         allQuotes = Quote.objects.all().order_by('-created_at')
+
+        userID = allQuotes[1].id
+        user = User.objects.filter(id=userID)
+        userName = user[0].first_name
+        # print userName, print "%"*500
 
         data = {
             'allQuotes': allQuotes,
+            'userName': userName,
+            'userID': userID,
+            'loggedInUser': loggedInUser[0].first_name,
         }
 
-        print allQuotes.count()
+        # print allQuotes.count()
 
         return render(request, "coolapp/quotes.html", data)
 
 def add_quote(request):
 	res = Quote.objects.create_quote(request.POST, request.session['id'])
-	print "Quote ID", res[1].id, "#"*500
+	# print "Quote ID", res[1].id,
 	return redirect ('/quotes')
 
 
 
 def logout(request)	:
-	del request.session['first_name']
+	del request.session['id']
 	return redirect ('/')

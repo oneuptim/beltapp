@@ -84,7 +84,7 @@ class QuoteManager(models.Manager):
 		else:
 			newQuoteOjbect = Quote.objects.create(author=author, quote=quote)
 			print newQuoteOjbect.quote, "8"*300
-			return (True, newQuoteOjbect)
+			return (newQuoteOjbect, session)
 
 class Quote(models.Model):
 	author = models.CharField(max_length=100, null=True)
