@@ -78,19 +78,21 @@ class QuoteManager(models.Manager):
 		error = []
 		author = post['author']
 		quote = post['quote']
+		hiddenQuoteID = post['hiddenQuoteID']
 
 		if (len(author) == 0) or (len(quote) == 0):
 			errors.append("Cannot be blank")
 		else:
 			newQuoteOjbect = Quote.objects.create(author=author, quote=quote)
 			print newQuoteOjbect.quote, "8"*300
-			return (newQuoteOjbect, session)
+			return (newQuoteOjbect, hiddenQuoteID, session)
 
 class Quote(models.Model):
 	author = models.CharField(max_length=100, null=True)
 	quote = models.CharField(max_length=1000, null=True)
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
+	user = models.ForeignKey('User', null=True)
 	objects = QuoteManager()
 
 # class Favorite(models.Model):

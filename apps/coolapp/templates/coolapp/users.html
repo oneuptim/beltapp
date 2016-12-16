@@ -9,15 +9,16 @@
     </head>
     <body>
       <div id="wrapper">
-        <h1>Success! Welcome, {{ loggedInUser }}!</h1> <h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{userID}}">Account<a/> | <a href= "/logout">Logout</a></h3>
-        <h5>Tim has 10 Posts</h5>
-        <p><strong>Shakespear:</strong>
-          Laughing hysterically documentary filmmaker with lots of self-respect pics on request. Proper grammar if you like my profile making people mad if you have an innie belly button I won't bite without permission, if you have to look it up don't bother I have an IQ of 140, which means a fairly successful career in sports no robots posing as real people it's very hard to meet quality women. Lol complete lack of shame if you dress up like a pin-up doll for me if you like my profile I don't really read much these days full-contact.
-        </p>
-
-        <p><strong>Henry David Thoreau:</strong>
-          If you have a BMI under 25 no robots posing as real people I starred in my own reality show for real though. I'm a big fan of you should message me no crazy chicks I know shirtless pics are a no-no, but bald is sexy, I live in constant amazement of nature and the universe I love the smell of my alter-ego is skydiving P90X. Wildly attractive doesn't hurt I hope there are good girls left see, I told you someone to provide for you you should message me well-built.
-        </p>
+        <h1>Success! Welcome, {{ loggedInUser }}!</h1> <h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{ sessionID }}">Account<a/> | <a href= "/logout">Logout</a></h3>
+        <h5>Tim has {{ quoteCount }} Posts</h5>
+        {% for quote in allQuotes %}
+        <div class="quotes">
+          <p>{{ quote.quote }}</p>
+          <strong>- {{ quote.author }}</strong>
+          <hr>
+          <p>Posted by <a href="users/{{quotePosterUserID}}">{{ quotePosterUserName }}</a> on: {{ quote.created_at }}</p>
+        </div>
+        {%  endfor %}
       </div>
     </body>
 </html>

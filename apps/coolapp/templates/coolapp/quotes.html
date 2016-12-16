@@ -9,14 +9,14 @@
     </head>
     <body>
       <div id="wrapper">
-      <h1>Success! Welcome, {{ loggedInUser }}!</h1> <h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{userID}}">Account<a/> | <a href= "/logout">Logout</a></h3><br>
+      <h1>Success! Welcome, {{ loggedInUser }}!</h1> <h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{sessionID}}">Account<a/> | <a href= "/logout">Logout</a></h3><br>
       <div class="register">
         {% for quote in allQuotes %}
         <div class="quotes">
           <p>{{ quote.quote }}</p>
           <strong>- {{ quote.author }}</strong>
           <hr>
-          <p>Posted by <a href="users/{{userID}}">{{ userName }}</a> on: {{ quote.created_at }}</p>
+          <p>Posted by <a href="users/{{quotePosterUserID}}">{{ quotePosterUserName }}</a> on: {{ quote.created_at }}</p>
         </div>
         {%  endfor %}
       </div>
@@ -24,6 +24,7 @@
       <div class="login">
         <form class="" action="/add_quote" method="post">
           {% csrf_token %}
+          <input type="hidden" name="" value="{{ hiddenQuoteID }}">
           <input type="text" name="author" value="">
           <textarea name="quote" rows="8" cols="80"></textarea>
           <input type="submit" name="" value="Submit Quote">

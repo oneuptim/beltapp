@@ -54,13 +54,18 @@ def users(request, id):
         user = User.objects.filter(id=session)
         userName = user[0].first_name
 
+        allQuotes = Quote.objects.all().order_by('-created_at')
+        quoteCount = allQuotes.count()
+
         data = {
-            # 'allQuotes': allQuotes,
+            'allQuotes': allQuotes,
             'userName': userName,
-            # 'userID': userID,
+            'quoteCount': quoteCount,
             'loggedInUser': loggedInUser[0].first_name,
+            'sessionID': session
         }
-        # quotesByUser = Quote.objects.all().order_by('-created_at')
+        # quotesByUser = Quote.objects.filter(user__id=1).order_by('-created_at')
+        # print quotesByUser, "%"*500
 
 	return render(request, "coolapp/users.html", data)
 
@@ -69,19 +74,23 @@ def quotes(request):
 		return redirect('/')
 	else:
 		session = request.session['id']
-        loggedInUser = User.objects.filter(id=session)
+        loggedInUserObject = User.objects.filter(id=session)
         allQuotes = Quote.objects.all().order_by('-created_at')
 
-        userID = allQuotes[1].id
-        user = User.objects.filter(id=userID)
-        userName = user[0].first_name
-        # print userName, print "%"*500
+        # sessionID grabbed from form upon submission
+        # quotePosterUserID = allQuotes[0].id
+        # print 'QUOTE POSTER USER ID', quotePosterUserID, "%"*500
+        quotePosterUserObject = User.objects.filter(id=session)
+        quotePosterUserName = quotePosterUserObject[0].first_name
+        print quotePosterUserName, "%"*500
+        # print quotePosterUserName, loggedInUserObject[0].first_name, "%"*500
 
         data = {
             'allQuotes': allQuotes,
-            'userName': userName,
-            'userID': userID,
-            'loggedInUser': loggedInUser[0].first_name,
+            'quotePosterUserName': quotePosterUserName,
+            'quotePosterUserID': session,
+            'loggedInUser': loggedInUserObject[0].first_name,
+            'hiddenQuoteID': session,
         }
 
         # print allQuotes.count()
