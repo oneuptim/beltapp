@@ -1,0 +1,226 @@
+body {
+  font-family: "futura-pt",sans-serif;
+}
+#wrapper {
+  width: 1045px;
+  background: #f8f8f8;
+  padding:20px 0 200px 40px;
+  margin: 0 auto;
+  display: block;
+}
+
+.register {
+  width: 600px;
+  margin-right: 40px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.login {
+  width: 400px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  font-size: 18px;
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+input[type=submit] {
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 100;
+  margin-top: 20px;
+  /*background-color: #4CAF50;*/
+  color: #fff;
+  border: none;
+}
+
+/*input[type=submit] .logoutBtn {
+  background-color: red;
+  width: 42%;
+  vertical-align: baseline;
+}*/
+
+hr {
+  width: 94%;
+  float: left;
+  margin-bottom: 20px;
+  border-top: solid 1px #b9b9b9;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: 100;
+  margin-bottom: 40px;
+  font-family: "futura-pt",sans-serif;
+  color: #b9b9b9;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 40px;
+  font-family: "futura-pt",sans-serif;
+  font-weight: 100;
+}
+
+h4 {
+  font-family: "futura-pt",sans-serif;
+}
+
+.flash_success {
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  font-family: "futura-pt",sans-serif;
+  width: 40%;
+  display: block;
+}
+
+.flash_error {
+  width: 40%;
+  font-size: 14px;
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  font-family: "futura-pt",sans-serif;
+  display: block;
+}
+
+.header {
+  width: 320px;
+  margin-bottom: 50px;
+  margin-top: -60px;
+  margin-left: 715px;
+}
+
+.logo {
+  width: 440px;
+  display: inline-block;
+  height: 60px;
+  font-size: 37px;
+  font-family: "futura-pt",sans-serif;
+  font-weight: 100;
+  margin-top: 20px;
+  color: #cacaca;
+  text-transform: uppercase;
+}
+
+h2 {
+  display: inline;
+  margin-right: 350px;
+  font-family: "futura-pt",sans-serif;
+}
+
+h3 {
+  display: inline;
+  margin-right: 0px;
+  font-family: "futura-pt",sans-serif;
+}
+
+a {
+  text-decoration: none;
+  font-family: "futura-pt",sans-serif;
+}
+
+textarea {
+  width: 95%;
+  padding: 10px;
+  font-size: 18px;
+  font-family: "futura-pt",sans-serif;
+  font-weight: 100;
+}
+
+.postsBtn {
+  background-color: #4caf50;
+  float: right;
+  width: 25%;
+  margin-right: 25px;
+  border-radius: 3px;
+  font-family: "futura-pt",sans-serif;
+}
+
+.spashBtn {
+  background-color: #4CAF50;
+  width: 105%;
+  border-radius: 4px;
+  font-family: "futura-pt",sans-serif;
+  }
+
+.commentsBtn {
+  background-color: #6666a9;
+  float: right;
+  width: 25%;
+  margin-right: 25px;
+  border-radius: 3px;
+  font-family: "futura-pt",sans-serif;
+}
+
+.posts {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline;
+}
+
+.comments {
+  display: inline;
+  /*background-color: pink;*/
+}
+
+/*textarea .comments {
+  height: 10px;
+}*/
+
+.wall {
+  width: 900px;
+  /*background-color: yellow;*/
+  padding: 20px;
+}
+
+/*h5 {
+  font-weight: bold;
+  font-size: 14px;
+  font-family: "futura-pt",sans-serif;
+  margin-bottom: 0px;
+  color: #6060d4;
+}*/
+
+.post, h5 {
+  font-size: 14px;
+  margin-bottom: 0px;
+  color: #6060d4;
+  margin-top: 120px;
+}
+
+a, h5 {
+  color: #8c4bf3;
+  opacity: 0.7;
+}
+
+a:hover, h5 {
+  color: #8c4bf3;
+  opacity: 1;
+}
+
+h6 {
+  font-size: 12px;
+  font-family: "futura-pt",sans-serif;
+  margin-bottom: 0px;
+  color: #6060d4;
+}
+
+p {
+  font-size: 18px;
+  font-family: "futura-pt",sans-serif;
+  font-weight: 100;
+}
