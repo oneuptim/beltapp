@@ -50,9 +50,19 @@ def users(request, id):
 		return redirect('/')
 	else:
 		session = request.session['id']
+        loggedInUser = User.objects.filter(id=session)
+        user = User.objects.filter(id=session)
+        userName = user[0].first_name
+
+        data = {
+            # 'allQuotes': allQuotes,
+            'userName': userName,
+            # 'userID': userID,
+            'loggedInUser': loggedInUser[0].first_name,
+        }
         # quotesByUser = Quote.objects.all().order_by('-created_at')
 
-		return render(request, "coolapp/users.html",)
+	return render(request, "coolapp/users.html", data)
 
 def quotes(request):
 	if not 'id' in request.session :

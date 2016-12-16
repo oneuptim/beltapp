@@ -9,7 +9,7 @@
     </head>
     <body>
       <div id="wrapper">
-      <h1>Success! Welcome, {{ loggedInUser }}!</h1> <h3><a href="/quotes">Dashboard<a/> | <a href="/users">Users<a/> | <a href= "/logout">Logout</a></h3><br>
+      <h1>Success! Welcome, {{ loggedInUser }}!</h1> <h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{userID}}">Account<a/> | <a href= "/logout">Logout</a></h3><br>
       <div class="register">
         {% for quote in allQuotes %}
         <div class="quotes">
