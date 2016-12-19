@@ -10,13 +10,12 @@
     <body>
       <div id="wrapper">
         <h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{ request.session.id }}">Account<a/> | <a href= "/logout">Logout</a></h3>
-        <hr><br>
-        <br>
-        <h3>Quote Contributors</h3>
-        {% for user in allUsers %}
-          <p><a href="/users/{{ user.id }}">{{ user.id }}. {{ user.first_name }} {{ user.last_name }}</a></p>
-        {% endfor %}
-
+        <div class="registration">
+          <h1>Quote Contributors</h1>
+          {% for user in allUsers %}
+            <p><a href="/users/{{ user.id }}">{{ user.id }}. {{ user.first_name }} {{ user.last_name }}</a></p>
+          {% endfor %}
+        </div>
       </div>
     </body>
 </html>

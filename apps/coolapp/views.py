@@ -73,7 +73,7 @@ def quotes(request):
         allQuotes = Quote.objects.all().exclude(favoritequote__user__id=session).order_by('-created_at')
         quotePosterUserObject = User.objects.filter(id=session)
         quotePosterUserName = quotePosterUserObject[0].first_name
-        favQuote = Favorite.objects.all().filter(user__id=session).order_by('-created_at')
+        favQuote = Favorite.objects.all().filter(user__id=session)
         # print favQuote, "*"*300
 
 

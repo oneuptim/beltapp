@@ -120,7 +120,6 @@ class User(models.Model):
 	last_name = models.CharField(max_length=45, blank=True, null=True)
 	email = models.EmailField(max_length = 255)
 	password = models.CharField(max_length=255)
-	dateofbirth = models.DateField()
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
 	objects = UserManager()
