@@ -14,15 +14,21 @@
       <div id="wrapper">
        <h2>Welcome, {{ loggedInUser }}!</h2>
        <div class="menu">
-         <h3><a href="/quotes">{% fontawesome_icon 'tachometer' color='#8c4bf3' %} Dashboard<a/> | <a href="/users/{{ request.session.id }}">{% fontawesome_icon 'cog' color='#8c4bf3' %} Account<a/> | <a href="/all">{% fontawesome_icon 'user' color='#8c4bf3' %}  Users</a> | <a href= "/logout">{% fontawesome_icon 'lock' color='#8c4bf3' %} Logout</a></h3>
+         <h3><a href="/quotes">{% fontawesome_icon 'tachometer' color='#8c4bf3' %} Dashboard<a/> • <a href="/users/{{ request.session.id }}">{% fontawesome_icon 'cog' color='#8c4bf3' %} Account<a/> • <a href="/all">{% fontawesome_icon 'user' color='#8c4bf3' %}  Users</a> • <a href= "/logout">{% fontawesome_icon 'lock' color='#8c4bf3' %} Logout</a></h3>
        </div>
       <div class="register">
+        <form class="" action="/add_quote" method="post">
+          {% csrf_token %}
+          <input type="text" name="author" value="">
+          <textarea name="quote" rows="8" cols="80"></textarea>
+          <input type="submit" name="" value="Submit a Quote">
+        </form>
         {% for quote in allQuotes %}
         <div class="quotes">
           <p>{{ quote.quote }}</p>
           <strong>- {{ quote.author }}</strong>
           <hr>
-          <p>Posted by <a href="users/{{quote.user.id}}">{{ quote.user.first_name }}</a> on: {{ quote.created_at }} <a href="/add_fav/{{ quote.id }}"><i class="fa fa-heart" aria-hidden="true" color='white'></i></a></p>
+          <p>Posted by <a href="users/{{quote.user.id}}">{{ quote.user.first_name }}</a> on: {{ quote.created_at }} <a href="/add_fav/{{ quote.id }}"><i class="fa fa-heart" aria-hidden="true" color='white'></i> Favorite</a></p>
 
         </div>
         {%  endfor %}
@@ -32,18 +38,10 @@
         {% for fav in favQuotes %}
         <div class="fav_quotes">
           <p>{{ fav.quote.quote }}</p>
-          <strong>- {{ fav.quote.author }} • <a href="/remove_fav/{{ fav.quote.id }}"><i class="fa fa-heart" aria-hidden="true" color='white'></i> Remove</a></strong>
+          - {{ fav.quote.author }} • <a href="/remove_fav/{{ fav.quote.id }}"><i class="fa fa-heart" aria-hidden="true" color='white'></i> Remove</a>
         </div>
         {% endfor %}
         <br>
-        <form class="" action="/add_quote" method="post">
-          {% csrf_token %}
-          <input type="text" name="author" value="">
-          <textarea name="quote" rows="8" cols="80"></textarea>
-          <input type="submit" name="" value="Submit a Quote">
-        </form>
-
-
       </div>
       </div>
     </body>

@@ -23,11 +23,12 @@ body {
 }
 
 input {
-  width: 85%;
+  width: 97.5%;
   padding: 8px;
   font-size: 18px;
   font-weight: 100;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  border: none;
 }
 
 input[type=submit] {
@@ -35,10 +36,22 @@ input[type=submit] {
   font-size: 18px;
   font-weight: 100;
   margin-top: 20px;
-  background-color: #4CAF50;
+  background-color: #8c4bf3;
   color: #fff;
   border: none;
+  width: 100%;
 }
+
+textarea {
+  width: 97%;
+  padding: 10px;
+  font-size: 18px;
+  font-family: "futura-pt",sans-serif;
+  font-weight: 100;
+  background-color: white;
+  border: none;
+}
+
 
 /*input[type=submit] .logoutBtn {
   background-color: red;
@@ -133,14 +146,6 @@ a {
   font-family: "futura-pt",sans-serif;
 }
 
-textarea {
-  width: 95%;
-  padding: 10px;
-  font-size: 18px;
-  font-family: "futura-pt",sans-serif;
-  font-weight: 100;
-}
-
 .postsBtn {
   background-color: #4caf50;
   float: right;
@@ -204,6 +209,7 @@ textarea {
 
 a, h5 {
   color: #8c4bf3;
+  font-weight: normal;
 }
 
 a:hover, h5 {

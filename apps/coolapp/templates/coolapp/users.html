@@ -7,10 +7,11 @@
        <link rel="stylesheet" href="{% static 'coolapp/css/styles.css' %}">
        <script src="https://use.typekit.net/iii7xtz.js"></script>
        <script>try{Typekit.load({ async: true });}catch(e){}</script>
+       {% fontawesome_stylesheet %}
     </head>
     <body>
       <div id="wrapper">
-        <h3><a href="/quotes">{% fontawesome_icon 'tachometer' color='#8c4bf3' %} Dashboard<a/> | <a href="/users/{{ request.session.id }}">{% fontawesome_icon 'cog' color='#8c4bf3' %} Account<a/> | <a href="/all">{% fontawesome_icon 'user' color='#8c4bf3' %}  Users</a> | <a href= "/logout">{% fontawesome_icon 'lock' color='#8c4bf3' %} Logout</a></h3>
+        <h3><a href="/quotes">{% fontawesome_icon 'tachometer' color='#8c4bf3' %} Dashboard<a/> • <a href="/users/{{ request.session.id }}">{% fontawesome_icon 'cog' color='#8c4bf3' %} Account<a/> • <a href="/all">{% fontawesome_icon 'user' color='#8c4bf3' %}  Users</a> <a href= "/logout"> • {% fontawesome_icon 'lock' color='#8c4bf3' %} Logout</a></h3>
         <h1>{{ quotePosterUserName }} has {{ quoteCount }} Posts</h1>
         {% for quote in allQuotes %}
         <div class="quotes">
