@@ -22,7 +22,7 @@
       </div>
 
       <div class="login">
-        <h4>My Favorite Quotes</h4>
+        <h1>My Favorite Quotes</h1>
         {% for fav in favQuotes %}
         <div class="fav_quotes">
           <p>{{ fav.quote.quote }}</p>
@@ -34,7 +34,7 @@
           {% csrf_token %}
           <input type="text" name="author" value="">
           <textarea name="quote" rows="8" cols="80"></textarea>
-          <input type="submit" name="" value="Submit Quote">
+          <input type="submit" name="" value="Submit a Quote">
         </form>
 
 
