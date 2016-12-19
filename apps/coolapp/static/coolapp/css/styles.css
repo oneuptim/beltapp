@@ -244,3 +244,9 @@ p {
 hr {
   margin: 20px 0;
 }
+
+.menu {
+  float: right;
+  margin-top: 14px;
+  margin-right: 30px;
+}

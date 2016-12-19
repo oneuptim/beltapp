@@ -12,7 +12,10 @@
     </head>
     <body>
       <div id="wrapper">
-       <h2>Welcome, {{ loggedInUser }}!</h2><h3><a href="/quotes">{% fontawesome_icon 'tachometer' color='#8c4bf3' %} Dashboard<a/> | <a href="/users/{{ request.session.id }}">{% fontawesome_icon 'cog' color='#8c4bf3' %} Account<a/> | <a href="/all">{% fontawesome_icon 'user' color='#8c4bf3' %}  Users</a> | <a href= "/logout">{% fontawesome_icon 'lock' color='#8c4bf3' %} Logout</a></h3>
+       <h2>Welcome, {{ loggedInUser }}!</h2>
+       <div class="menu">
+         <h3><a href="/quotes">{% fontawesome_icon 'tachometer' color='#8c4bf3' %} Dashboard<a/> | <a href="/users/{{ request.session.id }}">{% fontawesome_icon 'cog' color='#8c4bf3' %} Account<a/> | <a href="/all">{% fontawesome_icon 'user' color='#8c4bf3' %}  Users</a> | <a href= "/logout">{% fontawesome_icon 'lock' color='#8c4bf3' %} Logout</a></h3>
+       </div>
       <div class="register">
         {% for quote in allQuotes %}
         <div class="quotes">
