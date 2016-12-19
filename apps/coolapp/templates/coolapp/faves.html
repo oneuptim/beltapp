@@ -23,10 +23,10 @@
 
       <div class="login">
         <h4>My Favorite Quotes</h4>
-        {% for fav in favQuotes %}
-        <div class="fav_quotes">
-          <p>{{ fav.quote.quote }}</p>
-          <strong>- {{ fav.quote.author }} • <a href="/remove_fav/{{ fav.quote.id }}">Remove from Favorites</a></strong>
+        {% for quote in FavQuote %}
+        <div class="quotes">
+          <p>{{ quote.quote }}</p>
+          <strong>- {{ quote.author }}</strong>
         </div>
         {% endfor %}
         <br>

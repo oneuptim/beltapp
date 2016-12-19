@@ -8,8 +8,9 @@ urlpatterns = [
     url(r'^users/(?P<id>\d+)$' , views.users),
     url(r'^quotes$' , views.quotes),
     url(r'^add_quote$' , views.add_quote),
-    # url(r'^add_fav$' , views.add_fav),
-    # url(r'^remove_fav$' , views.remove_fav),
+    url(r'^add_fav/(?P<id>\d+)$' , views.add_fav),
+    url(r'^remove_fav/(?P<id>\d+)$' , views.remove_fav),
+    url(r'^all$' , views.show_all_users),
     url(r'^logout$', views.logout)
 
 ]

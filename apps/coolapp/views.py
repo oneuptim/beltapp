@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 # from . import models
-from .models import User, Quote
-
-from django.shortcuts import render, redirect, HttpResponse
-from django.contrib import messages
-from .models import User
+from .models import User, Quote, Favorite
 
 def index(request):
     return render(request, 'coolapp/index.html')
@@ -54,7 +50,7 @@ def users(request, id):
         user = User.objects.filter(id=session)
         userName = user[0].first_name
 
-        allQuotes = Quote.objects.all().order_by('-created_at')
+        allQuotes = Quote.objects.filter(user__id=id).order_by('-created_at')
         quoteCount = allQuotes.count()
 
         data = {
@@ -62,10 +58,9 @@ def users(request, id):
             'userName': userName,
             'quoteCount': quoteCount,
             'loggedInUser': loggedInUser[0].first_name,
+            'quotePosterUserName': allQuotes[0].user.first_name,
             'sessionID': session
         }
-        # quotesByUser = Quote.objects.filter(user__id=1).order_by('-created_at')
-        # print quotesByUser, "%"*500
 
 	return render(request, "coolapp/users.html", data)
 
@@ -75,22 +70,20 @@ def quotes(request):
 	else:
 		session = request.session['id']
         loggedInUserObject = User.objects.filter(id=session)
-        allQuotes = Quote.objects.all().order_by('-created_at')
-
-        # sessionID grabbed from form upon submission
-        # quotePosterUserID = allQuotes[0].id
-        # print 'QUOTE POSTER USER ID', quotePosterUserID, "%"*500
+        allQuotes = Quote.objects.all().exclude(favoritequote__user__id=session).order_by('-created_at')
         quotePosterUserObject = User.objects.filter(id=session)
         quotePosterUserName = quotePosterUserObject[0].first_name
-        print quotePosterUserName, "%"*500
-        # print quotePosterUserName, loggedInUserObject[0].first_name, "%"*500
+        favQuote = Favorite.objects.all().filter(user__id=session).order_by('-created_at')
+        # print favQuote, "*"*300
+
 
         data = {
             'allQuotes': allQuotes,
             'quotePosterUserName': quotePosterUserName,
             'quotePosterUserID': session,
             'loggedInUser': loggedInUserObject[0].first_name,
-            'hiddenQuoteID': session,
+            'favQuotes': favQuote
+            # 'hiddenQuoteID': session,
         }
 
         # print allQuotes.count()
@@ -99,10 +92,27 @@ def quotes(request):
 
 def add_quote(request):
 	res = Quote.objects.create_quote(request.POST, request.session['id'])
-	# print "Quote ID", res[1].id,
 	return redirect ('/quotes')
 
+def add_fav(request, id):
+	Favorite.objects.add_fav(id, request.session['id'])
 
+	return redirect('/quotes')
+
+def remove_fav(request, id):
+	res = Favorite.objects.filter(quote_id=id).delete()
+        print res, "^"*300
+	return redirect ('/quotes')
+
+def show_all_users(request):
+    res = User.objects.all()
+    data = {
+        'allUsers': res
+        }
+
+    print res, "*"*300
+
+    return render(request, 'coolapp/show_all_users.html', data)
 
 def logout(request)	:
 	del request.session['id']

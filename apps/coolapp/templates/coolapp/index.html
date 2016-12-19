@@ -1,64 +1,43 @@
 {% load staticfiles %}
 <!Doctype html>
 <html>
-    <head>
-       <title>Cool Quotes App</title>
-       <link rel="stylesheet" href="{% static 'coolapp/css/styles.css' %}">
-       <script src="https://use.typekit.net/iii7xtz.js"></script>
-       <script>try{Typekit.load({ async: true });}catch(e){}</script>
-     </head>
-    </head>
-    <body>
-
-      <div id="wrapper">
-        <div class="register">
-
-        <!-- for checking messages with flash -->
-        {% if messages %}
-        <ul class="messages">
-          {% for msg in messages %}
-          <li>
-          <div >
-          {{msg}}
-          </div>
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-        <!-- for flash messeges end -->
-
-          <!-- {% for error in request.session.errors %}
-          <p>{{error}}</p>
-          {% endfor %} -->
-        <h3>Registration</h3>
-        <form action="/register_process" method="post">
+<head>
+   <title>Cool Quotes App</title>
+   <link rel="stylesheet" href="{% static 'coolapp/css/styles.css' %}">
+   <script src="https://use.typekit.net/iii7xtz.js"></script>
+   <script>try{Typekit.load({ async: true });}catch(e){}</script>
+ </head>
+</head>
+<body>
+  <div id="wrapper">
+    <div class="register">
+    <!-- for checking messages with flash -->
+    {% if messages %}
+      {% for msg in messages %}
+      {{msg}}
+      {% endfor %}
+    {% endif %}
+  <h3>Registration</h3>
+      <form action="/register_process" method="post">
         {% csrf_token %}
-        <br>
-    		<input type="text" name="first_name" placeholder="First Name"><br>
-        <br>
-        <input type="text" name="last_name" placeholder="Last Name"><br>
-        <br>
-        <input type="text" name="email" placeholder="Email"><br>
-        <br>
-        <input type="password" name="password" placeholder="Password"><br>
-        <br>
-        <input type="password" name="confirm_password" placeholder="Confirm Password"><br>
-    		<br>
+    		<input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="confirm_password" placeholder="Confirm Password">
+        <input type="date" name="dateofbirth" value="">
     		<input type="submit" value="Register">
-        </form>
-      </div>
-      <div class="login">
-        <h3>Login</h3>
-        <form action="/login_process" method="post">
-        {% csrf_token %}
-        <br>
-        <input type="text" name="email" placeholder="Email"><br>
-        <br>
-        <input type="password" name="password" placeholder="Password"><br>
-        <br>
-        <input type="submit" value="Login">
-        </form>
-      </div>
+      </form>
     </div>
-    </body>
+    <div class="login">
+      <h3>Login</h3>
+      <form action="/login_process" method="post">
+        {% csrf_token %}
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  </div>
+</body>
 </html>

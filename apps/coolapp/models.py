@@ -78,14 +78,27 @@ class QuoteManager(models.Manager):
 		error = []
 		author = post['author']
 		quote = post['quote']
-		hiddenQuoteID = post['hiddenQuoteID']
-
 		if (len(author) == 0) or (len(quote) == 0):
 			errors.append("Cannot be blank")
 		else:
-			newQuoteOjbect = Quote.objects.create(author=author, quote=quote)
-			print newQuoteOjbect.quote, "8"*300
-			return (newQuoteOjbect, hiddenQuoteID, session)
+			# print session, "8"*300
+			user = User.objects.filter(id=session)
+			newQuoteOjbect = Quote.objects.create(author=author, quote=quote, user=user[0])
+
+			return (newQuoteOjbect, session)
+
+	def add_fav(self, id, session):
+		FavQuote = Quote.objects.filter(id=id)
+
+		# exludeQuote = Quote.objects.all().exclude(id=id)
+		grabQuoteObject = Quote.objects.get(id=id)
+		grabUserObject = User.objects.get(id=session)
+		newFavQuoteObject = Favorite.objects.create(quote=grabQuoteObject, user=grabUserObject)
+		# print newFavQuoteObject.quote.quote, "8"*300
+		# print id, session, "8"*300
+		# return (exludeQuote, id)
+		return (FavQuote)
+
 
 class Quote(models.Model):
 	author = models.CharField(max_length=100, null=True)
@@ -95,18 +108,19 @@ class Quote(models.Model):
 	user = models.ForeignKey('User', null=True)
 	objects = QuoteManager()
 
-# class Favorite(models.Model):
-# 	quote = models.ForeignKey('Quote')
-# 	user = models.ForeignKey('User')
-# 	created_at = models.DateTimeField(auto_now_add = True)
-# 	updated_at = models.DateTimeField(auto_now = True)
-# 	objects = QuoteManager()
+class Favorite(models.Model):
+	quote = models.ForeignKey('Quote', related_name ="favoritequote")
+	user = models.ForeignKey('User', related_name ="favoritesuser")
+	created_at = models.DateTimeField(auto_now_add = True)
+	updated_at = models.DateTimeField(auto_now = True)
+	objects = QuoteManager()
 
 class User(models.Model):
 	first_name = models.CharField(max_length=45, blank=True, null=True)
 	last_name = models.CharField(max_length=45, blank=True, null=True)
 	email = models.EmailField(max_length = 255)
 	password = models.CharField(max_length=255)
+	dateofbirth = models.DateField()
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
 	objects = UserManager()

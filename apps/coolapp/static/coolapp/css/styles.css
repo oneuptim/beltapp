@@ -4,7 +4,7 @@ body {
 #wrapper {
   width: 1200px;
   background: #f8f8f8;
-  padding:20px 0 200px 40px;
+  padding:20px 40px 200px 40px;
   margin: 0 auto;
   display: block;
 }
@@ -23,7 +23,7 @@ body {
 }
 
 input {
-  width: 100%;
+  width: 85%;
   padding: 8px;
   font-size: 18px;
   font-weight: 100;
@@ -35,7 +35,7 @@ input[type=submit] {
   font-size: 18px;
   font-weight: 100;
   margin-top: 20px;
-  /*background-color: #4CAF50;*/
+  background-color: #4CAF50;
   color: #fff;
   border: none;
 }
@@ -232,4 +232,26 @@ p {
   color: white;
   font-weight: 100;
   font-size: 17px;
+}
+
+.fav_quotes {
+  background: #ca235d;
+  padding: 20px;
+  margin-top: 20px;
+  color: white;
+  font-weight: 100;
+  font-size: 17px;
+}
+
+
+
+a, .quotes {
+  color: #fffb00;
+}
+
+a:hover, .quotes {
+  color: #8c4bf3;
+}
+hr {
+  margin: 20px 0;
 }
