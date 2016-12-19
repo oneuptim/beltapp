@@ -1,32 +1,36 @@
 {% load staticfiles %}
+{% load fontawesome %}
+
 <!Doctype html>
 <html>
     <head>
        <title>Quotes</title>
        <link rel="stylesheet" href="{% static 'coolapp/css/styles.css' %}">
+       <link rel="stylesheet" href="{% static 'coolapp/css/font-awesome.min.css' %}">
        <script src="https://use.typekit.net/iii7xtz.js"></script>
        <script>try{Typekit.load({ async: true });}catch(e){}</script>
+       {% fontawesome_stylesheet %}
     </head>
     <body>
       <div id="wrapper">
-       <h2>Welcome, {{ loggedInUser }}!</h2><h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{ request.session.id }}">Account<a/> | <a href="/all">All Users</a> | <a href= "/logout">Logout</a></h3>
+       <h2>Welcome, {{ loggedInUser }}!</h2><h3><a href="/quotes">Dashboard<a/> | <a href="/users/{{ request.session.id }}">Account<a/> | <a href="/all">{% fontawesome_icon 'user' color='red' %} All Users</a> | <a href= "/logout">Logout</a></h3>
       <div class="register">
         {% for quote in allQuotes %}
         <div class="quotes">
           <p>{{ quote.quote }}</p>
           <strong>- {{ quote.author }}</strong>
           <hr>
-          <p>Posted by <a href="users/{{quote.user.id}}">{{ quote.user.first_name }}</a> on: {{ quote.created_at }} • <a href="/add_fav/{{ quote.id }}">Add to Favorites</a></p>
+          <p>Posted by <a href="users/{{quote.user.id}}">{{ quote.user.first_name }}</a> on: {{ quote.created_at }} <a href="/add_fav/{{ quote.id }}"><i class="fa fa-heart" aria-hidden="true" color='white'></i></a></p>
+
         </div>
         {%  endfor %}
       </div>
-
       <div class="login">
         <h1>My Favorite Quotes</h1>
         {% for fav in favQuotes %}
         <div class="fav_quotes">
           <p>{{ fav.quote.quote }}</p>
-          <strong>- {{ fav.quote.author }} • <a href="/remove_fav/{{ fav.quote.id }}">Remove from Favorites</a></strong>
+          <strong>- {{ fav.quote.author }} • <a href="/remove_fav/{{ fav.quote.id }}"><i class="fa fa-heart" aria-hidden="true" color='white'></i> Remove</a></strong>
         </div>
         {% endfor %}
         <br>
