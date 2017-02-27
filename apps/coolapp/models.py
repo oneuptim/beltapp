@@ -74,18 +74,18 @@ class UserManager(models.Manager):
 
 class QuoteManager(models.Manager):
 	def create_quote(self, post, session):
-
-		error = []
+		errors = []
 		author = post['author']
 		quote = post['quote']
 		if (len(author) == 0) or (len(quote) == 0):
-			errors.append("Cannot be blank")
+			errors.append("Hey, you cannot post a blank quote!")
+			return (False, errors)
 		else:
 			# print session, "8"*300
 			user = User.objects.filter(id=session)
 			newQuoteOjbect = Quote.objects.create(author=author, quote=quote, user=user[0])
 
-			return (newQuoteOjbect, session)
+			return (True, newQuoteOjbect)
 
 	def add_fav(self, id, session):
 		FavQuote = Quote.objects.filter(id=id)
